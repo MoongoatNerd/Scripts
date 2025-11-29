@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+MONITORS=(1 2 3)
+
+VCP_CODE=10
+VALUE=5
+
+for MONITOR in "${MONITORS[@]}"; do
+    ddcutil -d "$MONITOR" setvcp "$VCP_CODE" + "$VALUE"
+done

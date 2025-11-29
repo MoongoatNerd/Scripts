@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Check for arguments
+if [ "$#" -lt 1 ]; then
+    echo "Missing expected argument(s)."
+    exit 1
+fi
+
+# The loop
+for file in "$@"; do
+    # Check if file exists and starts with ".", if it does remove "." if not print error.
+    if [[ -e "$file" && "$file" == .* ]]; then
+        mv "$file" "${file#.}"
+    else
+        if [[ -e "$file" ]]; then
+            echo "$file is already visible. Name left unchanged."
+        else
+            echo "File $file does not exist."
+        fi
+    fi
+done
